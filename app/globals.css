@@ -2,7 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+
+
+h1 {
+  font-size: x-large;
+  padding-top: 5%;
+  padding-bottom: 10px;
+  color:#707070
+}
+
+h2 {
+  font-size: large;
+  padding-top: 18px;
+  color:#707070
+}
+
+h3 {
+  color:#707070
+}
+
+p {
+  color:#707070
+}
+
+li {
+  color:#707070
+}
+
+
+
+/* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -24,4 +53,4 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */
