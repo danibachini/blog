@@ -1,4 +1,7 @@
 
+// import getPosts from './route';
+// 'use client'
+
 
 // SERVER SIDE
 
@@ -9,6 +12,12 @@
 // AND LOOK FOR MATCHES IN THE DATABASE
 
 
-export default function Search() {
+export default async function Search() {
+    let data = await fetch('http://localhost:3000/api/search', {
+        method: "GET",
+    })
+    let got = await data.json()
+    console.log('data');
+    console.log(got);
     return ("it's working")
 }

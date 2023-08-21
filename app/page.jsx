@@ -1,5 +1,4 @@
-// import Image from 'next/image';
-import { Metadata } from "next";
+
 
 const { MongoClient } = require('mongodb');
 
@@ -51,6 +50,7 @@ export default async function init() {
             className='rounded object-fit: cover;'
           />
         </div>   */}
+        
         <div className="pt-5">
           {data.text.map((paragraph) => (
             <p> {paragraph} <br/><br/> </p>
