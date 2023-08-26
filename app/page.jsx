@@ -1,5 +1,4 @@
 
-
 const { MongoClient } = require('mongodb');
 
 async function getData() {
@@ -11,7 +10,12 @@ async function getData() {
     const lastPost = await client
       .db('blogdb')
       .collection('posts')
-      .find({}, {projection: {_id:false, description:false}})
+      .find({}, {
+        projection: {
+          _id:false, 
+          description:false
+        }
+      })
       .sort({ date: -1 })
       .limit(1)
       .toArray();
@@ -27,9 +31,6 @@ async function getData() {
   return false
 }
 
-
-
-// -------------------- IMPROVE HERE - to add one image in the middle of the post --------------------
 export default async function init() {
   let data = await getData()
 

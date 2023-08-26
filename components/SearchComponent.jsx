@@ -1,5 +1,6 @@
 'use client'
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function SearchBar() {
@@ -57,7 +58,8 @@ export default function SearchBar() {
                         <div className= "mt-auto w-full p-2 bg-white shadow-lg rounded-b max-h-36 overflow-y-auto absolute">
                             {result.length > 0 ? (
                                 result.map((postObj, index) => (
-                                    <p key={index} className="hover:bg-neutral-100 rounded px-2 py-1">{postObj.title}</p>
+                                    // <p key={index} className="hover:bg-neutral-100 rounded px-2 py-1">{postObj.title}</p>
+                                    <Link key={index} className="hover:bg-neutral-100 rounded px-2 py-1" href={postObj.id}>{postObj.title}</Link>
                                 ))
                             ) : (
                                 <p>No matching results</p>
@@ -65,6 +67,9 @@ export default function SearchBar() {
                         </div>
                         }
                     </div>
+
+                    {/* I ALSO HAVE TO ADD A LINK 'SEE ALL RESULTS' AT THE END OF THE SEARCH AREA */}
+                    {/* THIS LINK WILL TAKE TO THE PAGE 'SEARCH'*/}
 
                 </label>
             </form>

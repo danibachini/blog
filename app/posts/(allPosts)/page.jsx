@@ -1,7 +1,7 @@
 import Image from 'next/image';
-// import { Metadata } from "next";
+import Link from 'next/link';
+import { MongoClient } from "mongodb";
 
-const { MongoClient } = require('mongodb');
 
 async function getData() {
     const driver = process.env.MONGO_URL;
@@ -14,7 +14,6 @@ async function getData() {
             .db('blogdb')
             .collection('posts')
             .find({}, {projection: {
-                _id: false, 
                 text: false, 
                 imageTop: false, 
                 imageCenter: false, 
@@ -43,6 +42,9 @@ export default async function allPosts() {
             <div key={post.title} className='p-5 group items-center relative hover:bg-neutral-200 hover:scale-105 hover:shadow-2xl  duration-300'>
                 <h2>{post.title}</h2>
                 <p className='pb-1 truncate ... group-hover:whitespace-break-spaces'>{post.description}</p>
+                <Link href={`/posts/${post._id}`}>
+                    Read More
+                </Link>
                 
                 <div className="relative w-full h-24 ">
                     <Image
@@ -63,4 +65,3 @@ export const metadata = {
     title: 'Galeeza Travel - Posts',
     description: 'All posts published by Galeeza',
 }
-
