@@ -25,22 +25,21 @@
 
 
 const { MongoClient } = require('mongodb');
-import { NextResponse } from 'next/server'
+// import { NextResponse } from 'next/server'
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url)
   const text = searchParams.get('text')
 
-  console.log(request.headers.get("limit"));
+  // console.log(request.headers.get("limit"));
 
   const driver = process.env.MONGO_URL;
   const client = new MongoClient(driver);
-
-  let limit = request.headers.get("limit")*1
+  let limit = request.headers.get("limit")*1;
 
   try {
     await client.connect();
-    console.log("Database connected");
+    // console.log("Database connected");
 
     const db = client.db('blogdb');
     const posts = await db
@@ -56,8 +55,8 @@ export async function GET(request) {
           score: { $meta: "textScore" }
         }
       )
-      // .limit(limit !== undefined && limit !== 0 ? limit : undefined)
-      .limit(10)
+      // .project(projection ? JSON.parse(projection) : {})
+      .limit(limit !== undefined && limit !== 0 ? limit : undefined)
       .sort({ score: -1 })
       .toArray();
 
@@ -68,8 +67,8 @@ export async function GET(request) {
 
   } finally {
     client.close();
-    console.log("Database connection closed");
+    // console.log("Database connection closed");
   }
 
-  return new Response(JSON.stringify({ data: text }))
+  // return new Response(JSON.stringify({ data: text }))
 }

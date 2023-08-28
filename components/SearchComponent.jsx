@@ -1,6 +1,6 @@
 'use client'
 
-import Link from "next/link";
+// import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function SearchBar() {
@@ -14,7 +14,7 @@ export default function SearchBar() {
             clearTimeout(timetout.current)
         }
         timetout.current = setTimeout(async () => {
-            console.log('User input is: ', input)
+            // console.log('User input is: ', input)
             if(input){
                 let data = await fetch('http://localhost:3000/api/search?text='+input, {
                     method: "GET",
@@ -54,19 +54,36 @@ export default function SearchBar() {
 
                     {/* area to display the search results */}
                     <div>
-                        {!input == '' && 
-                        <div className= "mt-auto w-full p-2 bg-white shadow-lg rounded-b max-h-36 overflow-y-auto absolute">
-                            {result.length > 0 ? (
-                                result.map((postObj, index) => (
-                                    // <p key={index} className="hover:bg-neutral-100 rounded px-2 py-1">{postObj.title}</p>
-                                    <Link key={index} className="hover:bg-neutral-100 rounded px-2 py-1" href={postObj.id}>{postObj.title}</Link>
-                                ))
-                            ) : (
-                                <p>No matching results</p>
-                            )}
-                        </div>
-                        }
+                        {!input == '' && (
+                            <div className="mt-auto w-full p-2 bg-white shadow-lg rounded-b max-h-60 overflow-y-auto absolute">
+                                {result.length > 0 ? (
+                                    <>
+                                        {result.map((postObj) => (
+                                            <div className="hover:bg-neutral-100 rounded px-2 py-1">
+                                                <a key={postObj._id} href={`/posts/${postObj._id}`} >
+                                                    {postObj.title}
+                                                </a>
+                                            </div>
+                                        ))}
+                                        <hr className="m-2"></hr>
+                                        <div className="hover:bg-neutral-100 rounded px-2 py-1 text-center">
+                                            <a href={`/search/${input}`} className="text-pink-galeeza-100 hover:bg-neutral-100 rounded px-2 py-1">See all results</a>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <p className="px-2 py-1">No matching results</p>
+                                )}
+                            </div>
+                        )}
                     </div>
+
+
+
+
+
+
+
+
 
                     {/* I ALSO HAVE TO ADD A LINK 'SEE ALL RESULTS' AT THE END OF THE SEARCH AREA */}
                     {/* THIS LINK WILL TAKE TO THE PAGE 'SEARCH'*/}

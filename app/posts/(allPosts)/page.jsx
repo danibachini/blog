@@ -1,7 +1,5 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { MongoClient } from "mongodb";
-
 
 async function getData() {
     const driver = process.env.MONGO_URL;
@@ -38,25 +36,23 @@ export default async function allPosts() {
 
     return (
         <>
-        {postsList.map((post) => (
-            <div key={post.title} className='p-5 group items-center relative hover:bg-neutral-200 hover:scale-105 hover:shadow-2xl  duration-300'>
-                <h2>{post.title}</h2>
-                <p className='pb-1 truncate ... group-hover:whitespace-break-spaces'>{post.description}</p>
-                <Link href={`/posts/${post._id}`}>
-                    Read More
-                </Link>
-                
-                <div className="relative w-full h-24 ">
-                    <Image
-                        src={post.imageThumbnail}
-                        alt="Thumbnail"
-                        fill="{true}"
-                        sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                        className='rounded object-cover'
-                    />
-                </div>
-            </div>
-        ))}
+            {postsList.map((post) => (
+                <a key={post._id} href={`/posts/${post._id}`}>
+                    <div className='p-5 group items-center relative hover:bg-neutral-200 hover:scale-105 hover:shadow-2xl  duration-300'>
+                        <h2>{post.title}</h2>
+                        <p className='pb-1 truncate ... group-hover:whitespace-break-spaces'>{post.description}</p>
+                        <div className="relative w-full h-24 ">
+                            <Image
+                                src={post.imageThumbnail}
+                                alt="Thumbnail"
+                                fill="{true}"
+                                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                                className='rounded object-cover'
+                            />
+                        </div>
+                    </div>
+                </a>
+            ))}
         </>
     )
 }

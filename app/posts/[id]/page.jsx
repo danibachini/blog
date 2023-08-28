@@ -12,7 +12,8 @@ export async function getData (id) {
         .collection('posts')
         .findOne({ _id: new ObjectId(id) }, {projection: {
             _id: false, 
-            description: false
+            description: false,
+            imageThumbnail: false
         }});
 
         return (post);
