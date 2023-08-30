@@ -1,6 +1,5 @@
 'use client'
 
-// import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 export default function SearchBar() {
@@ -8,13 +7,13 @@ export default function SearchBar() {
     const [input, setInput] = useState('');
     const [result, setResult] = useState([]);
     const timetout = useRef();
+    const [selectedResult, setSelectedResult] = useState(null);
 
     useEffect(()=>{
         if(timetout.current){
             clearTimeout(timetout.current)
         }
         timetout.current = setTimeout(async () => {
-            // console.log('User input is: ', input)
             if(input){
                 let data = await fetch('http://localhost:3000/api/search?text='+input, {
                     method: "GET",
@@ -22,12 +21,10 @@ export default function SearchBar() {
                         limit: 10
                     }
                 })
-                console.log('data is: ', data);
                 let result = await data.json();
-                console.log('Result from DB is: ', result);
                 setResult(result);
             }
-        }, 500);
+        }, 0);
     },[input])
 
     // setResult([])  // NOT SURE ABOUT THIS ONE - shows 'no result' while typying. however, I have to delete the last search
@@ -50,24 +47,36 @@ export default function SearchBar() {
                     type="input" 
                     name="search"
                     value={input}
-                    onChange={e => setInput(e.target.value)}/>
+                    onChange={e => setInput(e.target.value)}
+                    onBlur={() => selectedResult ? setSelectedResult(result) : setInput('')}
+                    />
 
                     {/* area to display the search results */}
                     <div>
                         {!input == '' && (
-                            <div className="mt-auto w-full p-2 bg-white shadow-lg rounded-b max-h-60 overflow-y-auto absolute">
+                            <div className="mt-auto w-full p-2 bg-white shadow-lg rounded-b max-h-96 overflow-y-auto absolute">
                                 {result.length > 0 ? (
                                     <>
                                         {result.map((postObj) => (
                                             <div className="hover:bg-neutral-100 rounded px-2 py-1">
-                                                <a key={postObj._id} href={`/posts/${postObj._id}`} >
+                                                <a 
+                                                key={postObj._id} 
+                                                href={`/posts/${postObj._id}`} 
+                                                onMouseDown={() => setSelectedResult(result)}
+                                                >
                                                     {postObj.title}
                                                 </a>
                                             </div>
                                         ))}
                                         <hr className="m-2"></hr>
                                         <div className="hover:bg-neutral-100 rounded px-2 py-1 text-center">
-                                            <a href={`/search/${input}`} className="text-pink-galeeza-100 hover:bg-neutral-100 rounded px-2 py-1">See all results</a>
+                                            <a 
+                                            href={`/search/${input}`} 
+                                            onMouseDown={() => setSelectedResult(result)} 
+                                            className="text-pink-galeeza-200 hover:bg-neutral-100 rounded px-2 py-1"
+                                            >
+                                                See all results
+                                            </a>
                                         </div>
                                     </>
                                 ) : (
@@ -76,20 +85,9 @@ export default function SearchBar() {
                             </div>
                         )}
                     </div>
-
-
-
-
-
-
-
-
-
-                    {/* I ALSO HAVE TO ADD A LINK 'SEE ALL RESULTS' AT THE END OF THE SEARCH AREA */}
-                    {/* THIS LINK WILL TAKE TO THE PAGE 'SEARCH'*/}
-
                 </label>
             </form>
         </>
     )
 }
+
