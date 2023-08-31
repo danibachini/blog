@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { MongoClient } from "mongodb";
 
-//  ADD PAGINATION HERE - 20/PAGE
+//  ADD PAGINATION HERE - 9/PAGE
 
 async function getData() {
     const driver = process.env.MONGO_URL;

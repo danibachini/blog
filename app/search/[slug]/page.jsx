@@ -19,7 +19,7 @@ export default async function Search( request ) {
         <>
             {result.map((postObj) => (
                  <a key={postObj._id} href={`/posts/${postObj._id}`}>
-                    <div className='p-5 rounded-lg items-center relative hover:bg-neutral-200 hover:scale-105 hover:shadow-2xl duration-300'>
+                    <div className='p-5 rounded-lg items-center relative hover:bg-neutral-100 hover:scale-105 hover:shadow-2xl duration-300'>
                         <h2>{postObj.title}</h2>
                         <p className='pb-1 font-light'>{postObj.description}</p>
                         <div className="relative w-full h-24 ">

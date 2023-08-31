@@ -18,7 +18,7 @@ export default function SearchBar() {
                 let data = await fetch('http://localhost:3000/api/search?text='+input, {
                     method: "GET",
                     headers: {
-                        limit: 10
+                        limit: 7
                     }
                 })
                 let result = await data.json();
@@ -54,7 +54,7 @@ export default function SearchBar() {
                     {/* area to display the search results */}
                     <div>
                         {!input == '' && (
-                            <div className="mt-auto w-full p-2 bg-white shadow-lg rounded-b max-h-96 overflow-y-auto absolute">
+                            <div className="mt-auto w-full p-2 bg-white shadow-lg rounded-b max-h-96 overflow-y-auto absolute z-10">
                                 {result.length > 0 ? (
                                     <>
                                         {result.map((postObj) => (

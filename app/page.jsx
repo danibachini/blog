@@ -1,6 +1,5 @@
 
 import { MongoClient } from "mongodb";
-// const { MongoClient } = require('mongodb');
 
 async function getData() {
   const driver = process.env.MONGO_URL;
@@ -41,18 +40,6 @@ export default async function init() {
         <h1>{data.title}</h1>
         <h3 className="pt-3 text-sm text-left">Written on {data.date}</h3>
         <img className="py-4" src={data.imageTop} alt="Image" />
-        {/* <div className="grid-element">
-          <Image
-            src={data.imageTop}
-            alt="Image"
-            // width={300}
-            // height={200}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className='rounded object-fit: cover;'
-          />
-        </div>   */}
-        
         <div className="pt-5">
           {data.text.map((paragraph) => (
             <p> {paragraph} <br/><br/> </p>

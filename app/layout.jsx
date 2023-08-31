@@ -19,21 +19,21 @@ export default async function RootLayout({ children }) {
 
           <NavBar />
        
-          <main>
+          <main className='mb-12'>
             {children}
           </main>
 
-          <footer className='h-24 flex justify-between mt-auto py-14'>
+          <hr className='mt-auto' />
+
+          <footer className='flex flex-wrap items-center justify-center gap-3 md:justify-between py-8 md:py-14 font-extralight'>
+            <p className='w-full text-center md:w-auto'> 2023 - All Rights Reserved</p>
+
             <div>
-              {/* LOGO */}
               <Link href="/">
                 <Image src="/logo-blue.png" alt="logo" width="205" height="25" className="cursor-pointer w-32" priority />
               </Link>
-              <p className='w-auto'>©</p>
             </div>
-
-            <p className='w-auto'> 2023 - All Rights Reserved</p>
-            <p>Contact Us</p>
+            {/* <p className='w-full text-center md:w-auto'>Contact Us</p> */}
           </footer>
           
         </div>  
