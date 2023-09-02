@@ -12,7 +12,6 @@ export async function getData (id) {
         .collection('posts')
         .findOne({ _id: new ObjectId(id) }, {projection: {
             _id: false, 
-            description: false,
             imageThumbnail: false
         }});
 
@@ -28,6 +27,7 @@ export async function getData (id) {
 
 export default async function eachPost( post ) {
     const data = await getData(post.params.id);
+
     return (
         <div className="text-center">
             <h1>{data.title}</h1>
@@ -40,4 +40,13 @@ export default async function eachPost( post ) {
             </div>
         </div>
     )
+}
+
+export async function generateMetadata( post ) {
+    const data = await getData(post.params.id);
+    
+    return {
+        title: 'Galeeza Travel - ' + data.title,
+        description: data.description,
+    }
 }

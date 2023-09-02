@@ -13,12 +13,11 @@ export default function NavBar() {
                 <div>
                     <div className="flex items-center justify-between md:justify-around py-8 md:block">
 
-                        {/* LOGO */}
                         <Link href="/">
                             <Image src="/logo-blue.png" alt="logo" width="205" height="25" className="cursor-pointer w-32" priority />
                         </Link>
 
-                        {/* TOGGLE (HAMBURGER BUTTON) FOR MOBILE */}
+                        {/* Toggle button for mobile */}
                         <div className="md:hidden">
                             <ButtonNav/>
                         </div>
@@ -30,7 +29,7 @@ export default function NavBar() {
                 <div className="md:block hidden">
                     <div className='md:flex'>
                         
-                        {/* SEARCH COMPONENT */}
+                        {/* Search component */}
                         <SearchBar />
 
                         {/* Navbar Links */}
@@ -54,5 +53,5 @@ export default function NavBar() {
             </div>
         </nav>
     </div>
-  );
+  )
 }

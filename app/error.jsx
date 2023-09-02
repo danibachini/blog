@@ -1,11 +1,9 @@
 'use client'; // Error components must be Client Components
- 
-import Link from 'next/link';
+
 import { useEffect } from 'react';
  
 export default function Error({ error, reset }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error);
   }, [error]);
  
@@ -21,9 +19,6 @@ export default function Error({ error, reset }) {
             }>
             Try again
         </button>
-
-        <h4 className='my-10'>I'm sorry, I don't know what's happening. <br/> Maybe someone in our team can help you</h4>
-        <Link href="/contactUs" className='md:hover:text-neutral-800'>Contact the team</Link>
 
     </div>
   );

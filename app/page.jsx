@@ -12,8 +12,8 @@ async function getData() {
       .collection('posts')
       .find({}, {
         projection: {
-          _id:false, 
-          description:false
+          _id: false,
+          imageThumbnail: false
         }
       })
       .sort({ date: -1 })
@@ -32,7 +32,7 @@ async function getData() {
 }
 
 export default async function init() {
-  let data = await getData()
+  const  data = await getData()
 
   return (
     <>
@@ -52,8 +52,9 @@ export default async function init() {
 
 export async function generateMetadata() {
   const data = await getData();
+  
   return {
-    title: 'Galeeza Travel - ' + data.title,
-    description: 'Information for travelers plan their trips',
+    title: 'Galeeza Travel - Information for travelers plan their trips',
+    description: data.description
   }
 }

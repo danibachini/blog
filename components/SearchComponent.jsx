@@ -20,6 +20,7 @@ export default function SearchBar() {
                     headers: {
                         limit: 7
                     }
+                    
                 })
                 let result = await data.json();
                 setResult(result);
@@ -27,11 +28,9 @@ export default function SearchBar() {
         }, 0);
     },[input])
 
-    // setResult([])  // NOT SURE ABOUT THIS ONE - shows 'no result' while typying. however, I have to delete the last search
-
     return (
         <>
-            {/* Search Input */}
+            {/* Search input */}
             <form className={`md:flex ${'px-6 py-3 md:p-0 block'}`} onSubmit={e=>e.preventDefault()}>
                 <label className="relative block menu menu-compact md:flex md:h-auto">
                     <span className="sr-only">Search</span>
@@ -51,7 +50,7 @@ export default function SearchBar() {
                     onBlur={() => selectedResult ? setSelectedResult(result) : setInput('')}
                     />
 
-                    {/* area to display the search results */}
+                    {/* Area to display the search results */}
                     <div>
                         {!input == '' && (
                             <div className="mt-auto w-full p-2 bg-white shadow-lg rounded-b max-h-96 overflow-y-auto absolute z-10">

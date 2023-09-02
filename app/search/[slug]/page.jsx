@@ -2,18 +2,14 @@
 import Image from "next/image";
 
 export default async function Search( request ) {
-    let input = request.params.slug;
-
-    // let data = await fetch(`http://localhost:3000/api/search?text=${input}&projection={"_id":false,"description":false,"imageThumbnail":false}`, {
-    let data = await fetch('http://localhost:3000/api/search?text='+input, {
+    const input = request.params.slug;
+    const data = await fetch('http://localhost:3000/api/search?text='+input, {
         method: "GET",
         headers: {
             limit: undefined,
         }
     })
-    let result = await data.json();
-
-    // manage to set a PROJECTION
+    const result = await data.json();
 
     return (
         <>

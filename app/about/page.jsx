@@ -5,10 +5,11 @@ export const metadata = {
 }
 
 export default function about () {
+
   return (
     <div className="text-center">
       <h1>About Us</h1>
-      <img className="py-4" src='team.jpg' alt="Image" />
+      <img className="py-4" src='team.jpg' alt="Image of a laptop screen displaying a team having a video call meeting" />
       <div className="pt-5">
         <p>
           Curabitur ut eros laoreet, lobortis mauris eu, porttitor 

@@ -1,12 +1,12 @@
 
-const { MongoClient } = require('mongodb');
+import { MongoClient } from "mongodb";
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url)
   const text = searchParams.get('text')
   const driver = process.env.MONGO_URL;
   const client = new MongoClient(driver);
-  let limit = request.headers.get("limit")*1;
+  const limit = request.headers.get("limit")*1;
 
   try {
     await client.connect();
@@ -25,7 +25,6 @@ export async function GET(request) {
           score: { $meta: "textScore" }
         }
       )
-      // .project(projection ? JSON.parse(projection) : {})
       .limit(limit !== undefined && limit !== 0 ? limit : undefined)
       .sort({ score: -1 })
       .toArray();

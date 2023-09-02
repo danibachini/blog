@@ -1,6 +1,5 @@
 
-
-const allPostsLayout = ({children}) => {
+export default function allPostsLayout({children}) {
     return (
         <div>
             <h1 className="text-center">Check our posts</h1>
@@ -11,5 +10,3 @@ const allPostsLayout = ({children}) => {
         </div>
     )
 }
-
-export default allPostsLayout;

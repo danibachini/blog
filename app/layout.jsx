@@ -27,13 +27,11 @@ export default async function RootLayout({ children }) {
 
           <footer className='flex flex-wrap items-center justify-center gap-3 md:justify-between py-8 md:py-14 font-extralight'>
             <p className='w-full text-center md:w-auto'> 2023 - All Rights Reserved</p>
-
             <div>
               <Link href="/">
                 <Image src="/logo-blue.png" alt="logo" width="205" height="25" className="cursor-pointer w-32" priority />
               </Link>
             </div>
-            {/* <p className='w-full text-center md:w-auto'>Contact Us</p> */}
           </footer>
           
         </div>  
